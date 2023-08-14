@@ -26,8 +26,17 @@ main:
 # a0 contains the number which we want to compute the factorial of
 # The return value should be stored in a0
 factorial:
-    # YOUR CODE HERE
+    li t0, 1 # i = 1
+    li t1, 1 # product = 1
 
-    # This is how you return from a function. You'll learn more about this later.
-    # This should be the last line in your program.
+loop:
+    blt a0, t0, finish
+    mul t2, t1, t0 # temp = product * i
+    mv  t1, t2     # product = temp
+    addi t0, t0, 1 # i++
+
+    j loop
+ 
+finish:
+    mv a0, t1
     jr ra
